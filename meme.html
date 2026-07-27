@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Center the Div Simulator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.container{
+    width:900px;
+    height:550px;
+    background:white;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
+    position:relative;
+    overflow:hidden;
+}
+
+h1{
+    text-align:center;
+    margin-top:20px;
+    color:#222;
+}
+
+.subtitle{
+    text-align:center;
+    color:gray;
+    margin-top:5px;
+}
+
+.playground{
+    position:relative;
+    width:100%;
+    height:362px;
+}
+
+.divbox{
+    width:120px;
+    height:120px;
+    background:#ff4757;
+    border-radius:15px;
+    position:absolute;
+    top:120px;
+    left:380px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-weight:bold;
+    transition:.8s;
+    font-size:18px;
+}
+
+.popup{
+    position:absolute;
+    top:25px;
+    right:20px;
+    background:#222;
+    color:white;
+    padding:12px 20px;
+    border-radius:10px;
+    opacity:0;
+    transform:translateY(-20px);
+    transition:.5s;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:10px;
+}
+
+.buttons label{
+    background:#0077ff;
+    color:white;
+    padding:12px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.buttons label:hover{
+    transform:scale(1.08);
+    background:#005fd4;
+}
+
+input{
+    display:none;
+}
+
+/* STEP 1 */
+
+#step1:checked ~ .container .divbox{
+    left:40px;
+    top:40px;
+    transform:rotate(30deg);
+    background:#ff6b81;
+}
+
+#step1:checked ~ .container .popup{
+    opacity:1;
+}
+#step1:checked ~ .container .popup::after{
+    content:"❌ Error 404 : Still not centered";
+}
+
+/* STEP 2 */
+
+#step2:checked ~ .container .divbox{
+    left:720px;
+    top:40px;
+    transform:rotate(-45deg);
+    background:#2ed573;
+}
+
+#step2:checked ~ .container .popup{
+    opacity:1;
+}
+#step2:checked ~ .container .popup::after{
+    content:"⚠ CSS says NO.";
+}
+
+/* STEP 3 */
+
+#step3:checked ~ .container .divbox{
+    left:40px;
+    top:240px;
+    transform:scale(.8) rotate(180deg);
+    background:#ffa502;
+}
+
+#step3:checked ~ .container .popup{
+    opacity:1;
+}
+#step3:checked ~ .container .popup::after{
+    content:"🤯 Margin-left: auto failed.";
+}
+
+/* STEP 4 */
+
+#step4:checked ~ .container .divbox{
+    left:720px;
+    top:240px;
+    transform:rotate(360deg);
+    background:#5352ed;
+}
+
+#step4:checked ~ .container .popup{
+    opacity:1;
+}
+#step4:checked ~ .container .popup::after{
+    content:"😭 Stack Overflow is loading...";
+}
+
+/* STEP 5 */
+
+#step5:checked ~ .container{
+    animation:shake .4s infinite;
+}
+
+#step5:checked ~ .container .divbox{
+    left:390px;
+    top:120px;
+    transform:scale(1.2);
+    background:#2ecc71;
+}
+
+#step5:checked ~ .container .popup{
+    opacity:1;
+}
+
+#step5:checked ~ .container .popup::after{
+    content:"🎉 Congratulations! You are now a Senior Frontend Developer.";
+}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-4px);}
+50%{transform:translateX(4px);}
+75%{transform:translateX(-4px);}
+100%{transform:translateX(0);}
+}
+
+.footer{
+    text-align:center;
+    margin-top:15px;
+    color:#555;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<input type="radio" name="move" id="step1">
+<input type="radio" name="move" id="step2">
+<input type="radio" name="move" id="step3">
+<input type="radio" name="move" id="step4">
+<input type="radio" name="move" id="step5">
+
+<div class="container">
+
+    <h1>🎯 Center the Div Simulator</h1>
+
+    <div class="subtitle">
+        Every click claims to center the div... but CSS has other plans.
+    </div>
+
+    <div class="playground">
+
+        <div class="popup"></div>
+
+        <div class="divbox">
+            DIV
+        </div>
+
+    </div>
+
+    <div class="buttons">
+        <label for="step1">Attempt 1</label>
+        <label for="step2">Attempt 2</label>
+        <label for="step3">Attempt 3</label>
+        <label for="step4">Attempt 4</label>
+        <label for="step5">Final Attempt</label>
+    </div>
+
+    <div class="footer">
+        "Centering a div is easy." — Someone who has never used CSS 😭
+    </div>
+
+</div>
+
+</body>
+</html>
