@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golu Singh</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:350px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    min-height: 40vh;
+    border: 5px solid red;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.input-box{
+    display:flex;
+    gap:10px;
+}
+
+input{
+    flex:1;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    padding:10px 15px;
+    border:none;
+    background:#007bff;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+ul{
+    list-style:none;
+    margin-top:20px;
+}
+
+li{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px;
+    margin-bottom:10px;
+    background:#eee;
+    border-radius:5px;
+}
+
+.completed{
+    text-decoration:line-through;
+    color:gray;
+}
+
+.actions button{
+    margin-left:5px;
+    padding:5px 8px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>To-Do List</h2>
+
+    <div class="input-box">
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+function addTask() {
+    const input = document.getElementById("taskInput");
+    const text = input.value.trim();
+
+    if(text === "") return;
+
+    const li = document.createElement("li");
+
+    const span = document.createElement("span");
+    span.textContent = text;
+
+    span.onclick = function(){
+        span.classList.toggle("completed");
+    };
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "Delete";
+    delBtn.onclick = function(){
+        li.remove();
+    };
+
+    actions.appendChild(delBtn);
+
+    li.appendChild(span);
+    li.appendChild(actions);
+
+    document.getElementById("taskList").appendChild(li);
+
+    input.value = "";
+    input.focus();
+}
+
+document.getElementById("taskInput").addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        addTask();
+    }
+});
+</script>
+
+</body>
+</html>
